@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cyber-defense
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-deploy.txt
+    startCommand: uvicorn cinesage.main:app --host 0.0.0.0 --port $PORT --no-server-header
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.12.3"
